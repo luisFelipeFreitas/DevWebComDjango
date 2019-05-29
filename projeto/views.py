@@ -1,7 +1,8 @@
 from django.contrib import messages
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, get_object_or_404, redirect
 from produto.forms import ClienteForm
-from produto.models import Categoria, Produto
+from produto.models import Categoria, Produto, Cliente
 from django.db.models import Q
 
 
@@ -66,3 +67,15 @@ def search(request):
 
     return render(request,template,contexto)
 
+def editaSenha(request):
+    email = request.POST.get('email')
+    cliente = get_object_or_404(Cliente,email=email)
+    novaSenha = request.POST.get('pwd')
+    cliente.senha=novaSenha
+    cliente.save()
+    mensagem="Editado com sucesso!"
+    return render(request,'edit_client.html',{'mensagem':mensagem})
+
+
+def showEditaSenha(request):
+    return render(request,'edit_client.html')

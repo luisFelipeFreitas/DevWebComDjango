@@ -538,3 +538,11 @@ body {
     border-bottom-right-radius: 20px !important;
     /*box-shadow: 1px !important;*/
 }
+
+.formEditaCliente .form-control{
+    border: 1px solid orange !important;
+    border-top-left-radius: 20px !important;
+    border-bottom-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+}

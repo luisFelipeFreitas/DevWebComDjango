@@ -27,6 +27,8 @@ urlpatterns = [
     path('cart/',views.cart,name='cart'),
     path('cadastra_cliente/',views.cadastra_cliente,name='cadastra_cliente'),
     path('listaProdutos/', views.search, name='listaProdutos'),
+    path('showEditaSenha/',views.showEditaSenha,name='showEditaSenha'),
+    path('editaSenha/',views.editaSenha,name='editaSenha')
 ]
 
 # http://localhost:8000
