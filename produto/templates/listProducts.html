@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+{% endblock %}
+
+{% block estilo %}
+
+{% endblock %}
+
+{% block conteudo %}
+    <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Resultados</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            {% for produto in produtos %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <a href="{% url 'listaProduto' id=produto.id slug_do_produto=produto.slug %}"> <img class="card-img-top mx-auto d-block" src="{% static 'produto/imagens/' %}{{ produto.img_as_list.0 }}"
+                        alt="{{ categoria.nome }}"></a>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title">{{ produto.nome  }}</h5>
+                        </div>
+                        {{ produto.descricao }}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}

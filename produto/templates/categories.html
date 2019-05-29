@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+{% endblock %}
+
+{% block estilo %}
+
+{% endblock %}
+
+{% block conteudo %}
+        <!-- ---------------------categorias------------ -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Categorias</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            {% for categoria in categorias %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card mb-3">
+                    <img class="card-img-top mx-auto d-block" src="{% static 'produto/imagens/' %}{{ categoria.img }}"
+                        alt="{{ categoria.nome }}">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title">{{ categoria.nome  }}</h5>
+                        </div>
+                        <p class="card-text text-justify">Congue nisi vitae suscipit tellus. Diam volutpat commodo sed
+                            egestas egestas fringilla phasellus faucibus. Mattis ullamcorper velit sed ullamcorper morbi
+                            tincidunt ornare massa eget. Arcu odio ut sem nulla pharetra diam sit amet nisl. Dictum
+                            fusce ut placerat orci nulla.</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-right">
+                            <button class="btn btn-outline-warning">Ir para categoria</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{% endblock %}

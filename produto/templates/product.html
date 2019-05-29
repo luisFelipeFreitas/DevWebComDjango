@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+{% endblock %}
+
+{% block estilo %}
+
+{% endblock %}
+
+{% block conteudo %}
+
+  <!-------------Single Product------------->
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ produto.codigo }}</li>
+    </ol>
+  </nav>
+  <section class="single-product">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5 mb-1">
+          <div id="product-slider" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                {% for img in produto.img_as_list %}
+                    <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                        <img src="{% static 'produto/imagens/' %}{{ img }}" class="d-block">
+                    </div>
+                {% endfor %}
+              <a class="carousel-control-prev" href="#product-slider" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Anterior</span>
+              </a>
+              <a class="carousel-control-next" href="#product-slider" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Próximo</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-md-7">
+            {% if produto.novidade %}
+          <p class="badge badge-pill badge-success col-2 text-center">Novidade</p>
+            {% endif %}
+          <h2>{{ produto.nome }}</h2>
+          <h5>{{ produto.slug }}</h5>
+          <p>Cód({{ produto.codigo }})</p>
+            {% for possivel_nota in possiveis_notas %}
+                {% if produto.nota >= possivel_nota %}
+                <i class="fa fa-star"></i>
+                {% endif %}
+                {% if produto.nota < possivel_nota %}
+                <i class="fa fa-star-o"></i>
+                {% endif %}
+            {% endfor %}
+
+
+          <p class="price">R${{ produto.preco }}</p>
+          <p><b>Disponibildiade:</b> Em estoque</p>
+          <p><b>Marca:</b> XYZ Company</p>
+          <label>Quantidade: </label>
+          <input type="text" value="1">
+          <button type="button" class="btn btn-primary">Add ao carrinho</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!------------product-description-------------->
+
+  <section class="product-description">
+    <div class="container">
+      <h6>Descrição do Produto</h6>
+      <p>{{ produto.descricao }} </p>
+
+      <hr>
+    </div>
+
+    <div class="container">
+      <div class="title-box">
+        <h2>Similares</h2>
+      </div>
+      <div class="row">
+          {% for prod in produtosSemelhantes %}
+        <div class="col-md-3">
+          <div class="product-top">
+            <a href="{% url 'listaProduto' id=prod.id slug_do_produto=prod.slug %}"><img src="{% static 'produto/imagens/' %}{{ prod.img_as_list.0 }}"></a>
+            <div class="overlay-right">
+              <button type="button" class="btn btn-secondary" title="Compra Rápida">
+                <i class="fa fa-eye"></i>
+              </button>
+              <button type="button" class="btn btn-secondary" title="Add à lista de desejos">
+                <i class="fa fa-heart-o"></i>
+              </button>
+              <button type="button" class="btn btn-secondary" title="Add ao carrinho">
+                <i class="fa fa-shopping-cart"></i>
+              </button>
+            </div>
+          </div>
+          <div class="product-bottom text-center">
+                {% for possivel_nota in possiveis_notas %}
+                    {% if prod.nota >= possivel_nota %}
+                    <i class="fa fa-star"></i>
+                    {% endif %}
+                    {% if prod.nota < possivel_nota %}
+                    <i class="fa fa-star-o"></i>
+                    {% endif %}
+                {% endfor %}
+            <h3>{{ prod.name }}</h3>
+            <h5>R${{ prod.preco }}</h5>
+          </div>
+        </div>
+          {% endfor %}
+
+{#        <div class="col-md-3">#}
+{#          <div class="product-top">#}
+{#            <a href="product.html"><img src="{% static 'produto/imagens/product2.jpg' %}"></a>#}
+{#            <div class="overlay-right">#}
+{#              <button type="button" class="btn btn-secondary" title="Compra Rápida">#}
+{#                <i class="fa fa-eye"></i>#}
+{#              </button>#}
+{#              <button type="button" class="btn btn-secondary" title="Add à lista de desejos">#}
+{#                <i class="fa fa-heart-o"></i>#}
+{#              </button>#}
+{#              <button type="button" class="btn btn-secondary" title="Add ao carrinho">#}
+{#                <i class="fa fa-shopping-cart"></i>#}
+{#              </button>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="product-bottom text-center">#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star"></i>#}
+{#            <h3>Smart Watch</h3>#}
+{#            <h5>R$350.00</h5>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="col-md-3">#}
+{#          <div class="product-top">#}
+{#            <a href="product.html"><img src="{% static 'produto/imagens/product3.jpg' %}"></a>#}
+{#            <div class="overlay-right">#}
+{#              <button type="button" class="btn btn-secondary" title="Compra Rápida">#}
+{#                <i class="fa fa-eye"></i>#}
+{#              </button>#}
+{#              <button type="button" class="btn btn-secondary" title="Add à lista de desejos">#}
+{#                <i class="fa fa-heart-o"></i>#}
+{#              </button>#}
+{#              <button type="button" class="btn btn-secondary" title="Add ao carrinho">#}
+{#                <i class="fa fa-shopping-cart"></i>#}
+{#              </button>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="product-bottom text-center">#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star"></i>#}
+{#            <h3>Sapatos Sociais</h3>#}
+{#            <h5>R$227.90</h5>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#        <div class="col-md-3">#}
+{#          <div class="product-top">#}
+{#            <a href="product.html"><img src="{% static 'produto/imagens/product4.jpg' %}"></a>#}
+{#            <div class="overlay-right">#}
+{#              <button type="button" class="btn btn-secondary" title="Compra Rápida">#}
+{#                <i class="fa fa-eye"></i>#}
+{#              </button>#}
+{#              <button type="button" class="btn btn-secondary" title="Add à lista de desejos">#}
+{#                <i class="fa fa-heart-o"></i>#}
+{#              </button>#}
+{#              <button type="button" class="btn btn-secondary" title="Add ao carrinho">#}
+{#                <i class="fa fa-shopping-cart"></i>#}
+{#              </button>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="product-bottom text-center">#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star"></i>#}
+{#            <i class="fa fa-star-half-o"></i>#}
+{#            <i class="fa fa-star-o"></i>#}
+{#            <h3>Relógio</h3>#}
+{#            <h5>R$300.00</h5>#}
+{#          </div>#}
+{#        </div>#}
+{##}
+{#      </div>#}
+    </div>
+
+  </section>
+{% endblock %}
+

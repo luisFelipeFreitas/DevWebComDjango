@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block titulo %}
+{% endblock %}
+
+{% block estilo %}
+
+{% endblock %}
+{% block conteudo %}
+        <!-- ---------------------carrinho------------ -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="product.html">IRSC2019</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Carrinho</li>
+            </ol>
+        </nav>
+        <div class="m-md-12">
+            <ul class="list-group">
+                <li class="list-group-item list mb-1"><img src="{% static 'produto/imagens/TESTE1.jpg' %}" class="mr-5">
+                    <span>Camisa
+                        Masculina
+                        (Tamanho M) <b class="font-cod">Cód-IRSC2019</b> </span>
+                    <i class="fa fa-times" id="cancel-purchase"></i>
+                    <i class="fa fa-pencil mr-2" id="edit-purchase"></i>
+                    <b class="qtd-prod mr-4">Quantidade: 4</b>
+                </li>
+            </ul>
+            <ul class="list-group">
+                <li class="list-group-item list mb-1"><img src="{% static 'produto/imagens/product3.jpg' %}" class="mr-5">
+                    <span>Sapato Social Masculino<b class="font-cod ml-1">Cód-DPAC2019</b> </span>
+                    <i class="fa fa-times" id="cancel-purchase"></i>
+                    <i class="fa fa-pencil mr-2" id="edit-purchase"></i>
+                    <b class="qtd-prod mr-4">Quantidade: 1</b>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <button type="button" class="btn btn-warning botao-comprar">Finalizar Compra</button>
+        </div>
+
+        <section class="footer">
+            <div class="container tex-center">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h1>Links Úteis</h1>
+                        <p>Politica de Privacidade</p>
+                        <p>Termos de Uso</p>
+                        <p>Política de retorno</p>
+                        <p>Cupons</p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h1>Compania</h1>
+                        <p>About Us</p>
+                        <p>Contatos</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h1>Siga nossas mídias sociais</h1>
+                        <p><i class="fa fa-facebook-official"></i> Facebook</p>
+                        <p><i class="fa fa-youtube-play"></i> YouTube</p>
+                        <p><i class="fa fa-linkedin"></i> Linkedin</p>
+                        <p><i class="fa fa-twitter"></i> Twitter</p>
+                    </div>
+                    <div class="col-md-3 footer-image">
+                        <h1>Download App</h1>
+                        <img src="../Assets/Pics/app-logo.png">
+                    </div>
+                </div>
+                <hr>
+                <p class="copyright">Feito com <i class="fa fa-heart-o"></i> pela empresa Sahara</p>
+            </div>
+        </section>
+{% endblock %}
