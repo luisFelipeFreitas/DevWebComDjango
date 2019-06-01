@@ -87,6 +87,19 @@
                 {% endif %}
             </div>
         </div>
+        <div class="form-group row" style="margin-bottom: 20px;">
+            <label for="id_email" class="col-lg-2 col-form-label font-weight-bold">Senha</label>
+            <div class="col-lg-10">
+                {{ form.senha }}
+                {% if form.senha.errors %}
+                    <div class="alert alert-danger mb-0" style="padding-top: 2px; padding-bottom: 2px;">
+                        {% for error in form.senha.errors %}
+                            <small>{{ error }}</small>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
 
         <div class="form-group row" style="margin-top: 20px;">
             <div class="col-lg-10 offset-lg-2">
