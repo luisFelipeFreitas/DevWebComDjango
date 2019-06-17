@@ -18,7 +18,7 @@
         </nav>
 
         <div class="row">
-            {% for produto in produtos %}
+            {% for produto in items %}
             <div class="col-md-6 col-lg-4">
                 <div class="card mb-3">
                     <a href="{% url 'listaProduto' id=produto.id slug_do_produto=produto.slug %}"> <img class="card-img-top mx-auto d-block" src="{% static 'produto/imagens/' %}{{ produto.img_as_list.0 }}"
@@ -32,5 +32,25 @@
                 </div>
             </div>
             {% endfor %}
+
         </div>
+    {% if items.has_other_pages %}
+            {% if items.has_previous %}
+                <a class="btn btn-outline-info mb-4" href="?page=1&q={{ query }}">Primeira</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ items.previous_page_number }}&q={{ query }}">anterior</a>
+            {% endif %}
+            {% for num in items.paginator.page_range %}
+                {% if items.number ==  num %}
+                    <a class="btn btn-info mb-4" href="?page={{ num }}&q={{ query }}">{{ num }}</a>
+                {% elif num  > items.number|add:'-3' and num < items.number|add:'3'%}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}&q={{ query }}">{{ num }}</a>
+                {% endif %}
+
+            {% endfor %}
+            {% if items.has_next %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ items.next_page_number }}&q={{ query }}">Proximo</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ items.paginator.num_pages }}&q={{ query }}">Ultima</a>
+
+            {% endif %}
+        {% endif %}
 {% endblock %}

@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from produto.forms import ClienteForm
 from produto.models import Categoria, Produto, Cliente
 from django.db.models import Q
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     categorias =Categoria.objects.all().order_by("nome")
@@ -62,8 +62,15 @@ def search(request):
 
     query = request.GET.get('q')
     produtos = Produto.objects.filter(Q(slug__icontains=query) | Q(nome__icontains=query))
-
-    contexto = {'produtos':produtos}
+    paginator = Paginator(produtos,1)
+    page = request.GET.get('page')
+    try:
+        items = paginator.page(page)
+    except PageNotAnInteger:
+        items = paginator.page(1)
+    except EmptyPage:
+        items = paginator.page(paginator.num_pages)
+    contexto = {'items':items, 'query':query}
 
     return render(request,template,contexto)
 
