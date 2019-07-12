@@ -28,7 +28,8 @@ urlpatterns = [
     path('cadastra_cliente/',views.cadastra_cliente,name='cadastra_cliente'),
     path('listaProdutos/', views.search, name='listaProdutos'),
     path('showEditaSenha/',views.showEditaSenha,name='showEditaSenha'),
-    path('editaSenha/',views.editaSenha,name='editaSenha')
+    path('editaSenha/',views.editaSenha,name='editaSenha'),
+    path('removeProduto/',views.removeProduto,name='removeProduto')
 ]
 
 # http://localhost:8000

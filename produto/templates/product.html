@@ -65,6 +65,19 @@
           <label>Quantidade: </label>
           <input type="text" value="1">
           <button type="button" class="btn btn-primary">Add ao carrinho</button>
+
+        <div class="col-12">
+
+            <form id="form_remove_produto" style="margin-bottom: 0px;"
+                  action ="{% url 'removeProduto' %}" method ="post" novalidate>
+                {% csrf_token %}
+                <button id="botao_remover" type="button" class="btn btn-danger">
+                     Remover
+                </button>
+            </form>
+
+        </div>
+
         </div>
       </div>
     </div>
@@ -116,87 +129,15 @@
         </div>
           {% endfor %}
 
-{#        <div class="col-md-3">#}
-{#          <div class="product-top">#}
-{#            <a href="product.html"><img src="{% static 'produto/imagens/product2.jpg' %}"></a>#}
-{#            <div class="overlay-right">#}
-{#              <button type="button" class="btn btn-secondary" title="Compra Rápida">#}
-{#                <i class="fa fa-eye"></i>#}
-{#              </button>#}
-{#              <button type="button" class="btn btn-secondary" title="Add à lista de desejos">#}
-{#                <i class="fa fa-heart-o"></i>#}
-{#              </button>#}
-{#              <button type="button" class="btn btn-secondary" title="Add ao carrinho">#}
-{#                <i class="fa fa-shopping-cart"></i>#}
-{#              </button>#}
-{#            </div>#}
-{#          </div>#}
-{#          <div class="product-bottom text-center">#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star"></i>#}
-{#            <h3>Smart Watch</h3>#}
-{#            <h5>R$350.00</h5>#}
-{#          </div>#}
-{#        </div>#}
-{##}
-{#        <div class="col-md-3">#}
-{#          <div class="product-top">#}
-{#            <a href="product.html"><img src="{% static 'produto/imagens/product3.jpg' %}"></a>#}
-{#            <div class="overlay-right">#}
-{#              <button type="button" class="btn btn-secondary" title="Compra Rápida">#}
-{#                <i class="fa fa-eye"></i>#}
-{#              </button>#}
-{#              <button type="button" class="btn btn-secondary" title="Add à lista de desejos">#}
-{#                <i class="fa fa-heart-o"></i>#}
-{#              </button>#}
-{#              <button type="button" class="btn btn-secondary" title="Add ao carrinho">#}
-{#                <i class="fa fa-shopping-cart"></i>#}
-{#              </button>#}
-{#            </div>#}
-{#          </div>#}
-{#          <div class="product-bottom text-center">#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star"></i>#}
-{#            <h3>Sapatos Sociais</h3>#}
-{#            <h5>R$227.90</h5>#}
-{#          </div>#}
-{#        </div>#}
-{##}
-{#        <div class="col-md-3">#}
-{#          <div class="product-top">#}
-{#            <a href="product.html"><img src="{% static 'produto/imagens/product4.jpg' %}"></a>#}
-{#            <div class="overlay-right">#}
-{#              <button type="button" class="btn btn-secondary" title="Compra Rápida">#}
-{#                <i class="fa fa-eye"></i>#}
-{#              </button>#}
-{#              <button type="button" class="btn btn-secondary" title="Add à lista de desejos">#}
-{#                <i class="fa fa-heart-o"></i>#}
-{#              </button>#}
-{#              <button type="button" class="btn btn-secondary" title="Add ao carrinho">#}
-{#                <i class="fa fa-shopping-cart"></i>#}
-{#              </button>#}
-{#            </div>#}
-{#          </div>#}
-{#          <div class="product-bottom text-center">#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star"></i>#}
-{#            <i class="fa fa-star-half-o"></i>#}
-{#            <i class="fa fa-star-o"></i>#}
-{#            <h3>Relógio</h3>#}
-{#            <h5>R$300.00</h5>#}
-{#          </div>#}
-{#        </div>#}
-{##}
-{#      </div>#}
     </div>
 
   </section>
+    <script>
+        $('#botao_remover').click(function(){
+            $("#form_remove_produto").append('{{ form_remove_produto.produto_id }}')
+            $("#form_remove_produto").submit()
+        })
+
+    </script>
 {% endblock %}
 
